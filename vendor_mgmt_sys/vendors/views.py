@@ -152,5 +152,30 @@ class VendorView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+    def put(self, request, pk=None):
+        if pk:
+            try:
+                vendor = Vendor.objects.get(pk=pk)
+                serializer = VendorSerializer(vendor, data=request.data, partial=True)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                return Response({"error": "there are some errors in the json body"}, status=status.HTTP_400_BAD_REQUEST)
+            except Exception as e:
+                return Response({"error": f"vendor with id {pk} not found!"}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({"error": f"enter a valid id"}, status=status.HTTP_404_NOT_FOUND)
+
+    
+    def delete(self, request, pk=None):
+        if pk:
+            vendor = Vendor.objects.get(pk=pk)
+            vendor.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response({"error": "enter a valid vendor id"}, status=status.HTTP_400_BAD_REQUEST)
+                
 
     
