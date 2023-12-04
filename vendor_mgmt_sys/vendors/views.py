@@ -2,7 +2,7 @@ from .models import Vendor, PurchaseOrder, HistoricalPerformance
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import VendorSerializer, POSerializer, HPSerializer
-from datetime import timedelta
+from datetime import timedelta, datetime
 from rest_framework import status
 
 
@@ -262,3 +262,20 @@ class HistoricalPerformanceView(APIView):
                     return Response({"info": "this vendor doesn't have any records"}, status=status.HTTP_200_OK)
             except Exception:
                 return Response({"error": "enter a valid vendor id"}, status=status.HTTP_404_NOT_FOUND)
+            
+
+class AcknowledgmentView(APIView):
+    def post(self, request, pk=None):
+        if pk:
+            try:
+                order = PurchaseOrder.objects.get(pk=pk)
+                serializer = POSerializer(order, data={"acknowledgment_date": datetime.now()}, partial=True)
+                if serializer.is_valid():
+                    serializer.save()
+                    evaluate_performance()
+                    return Response(serializer.data, status=status.HTTP_201_CREATED)
+            except Exception:
+                return Response({"error": "order id doesn't exist"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"error": "enter a valid id"}, status=status.HTTP_400_BAD_REQUEST)
+            
