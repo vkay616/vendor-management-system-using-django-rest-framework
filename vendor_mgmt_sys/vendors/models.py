@@ -1,3 +1,4 @@
+from collections.abc import Iterable
 from django.db import models
 import uuid
 from datetime import timedelta, datetime
@@ -149,20 +150,31 @@ class HistoricalPerformance(models.Model):
 
     # on time delivery rate on the recorded date
     on_time_delivery_rate = models.FloatField(
+        editable=False,
         help_text="on time delivery rate on the recorded date"
     )
 
     # average rating of the vendor on the recorded date
     quality_rating_avg = models.FloatField(
+        editable=False,
         help_text="average rating of the vendor on the recorded date"
     )
 
     # average response time of the vendor on the recorded date
     average_response_time = models.FloatField(
+        editable=False,
         help_text="average response time of the vendor on the recorded date"
     )
 
     # fulfillment rate of the vendor on the recorded date
     fulfillment_rate = models.FloatField(
+        editable=False,
         help_text="fulfillment rate of the vendor on the recorded date"
     )
+    
+    def save(self):
+        self.on_time_delivery_rate = self.vendor.on_time_delivery_rate
+        self.quality_rating_avg = self.vendor.quality_rating_avg
+        self.average_response_time = self.vendor.average_response_time
+        self.fulfillment_rate = self.vendor.fulfillment_rate
+        super().save()

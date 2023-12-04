@@ -17,3 +17,26 @@ class VendorSerializer(serializers.ModelSerializer):
             "average_response_time",
             "fulfillment_rate"
         ]
+
+
+
+class POSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = PurchaseOrder
+
+        fields = "__all__"
+
+        read_only_fields = [
+            "order_date"
+        ]
+
+
+class HPSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        
+        model = HistoricalPerformance
+
+        fields = "__all__"
