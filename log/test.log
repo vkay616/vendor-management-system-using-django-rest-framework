@@ -1,0 +1,520 @@
+- GET http://127.0.0.1:8000/api/token/
+- 
+- Response Code: 200
+- {
+  "token": "872dd00d594ff92c164fc20bcfcdaff402250e2e"
+}
+- 
+- 
+- 
+- GET http://127.0.0.1:8000/api/vendors/
+- 
+- Response Code: 200
+- [
+  {
+    "id": 1,
+    "name": "Vendor 1",
+    "contact_details": "Vendor 1 Contact Details",
+    "address": "Vendor 1 Address",
+    "vendor_code": "99c7a5da-8f9e-4fdb-8233-67d71b6f8a05",
+    "on_time_delivery_rate": 33.33,
+    "quality_rating_avg": 4.33,
+    "average_response_time": 297.97,
+    "fulfillment_rate": 60.0
+  },
+  {
+    "id": 2,
+    "name": "Vendor 2",
+    "contact_details": "Vendor 2 Contact Details",
+    "address": "Vendor 2 Address",
+    "vendor_code": "aaf24993-f5ef-488a-a6ad-ff29496ad6fe",
+    "on_time_delivery_rate": 100.0,
+    "quality_rating_avg": 4.0,
+    "average_response_time": 217.15,
+    "fulfillment_rate": 100.0
+  },
+  {
+    "id": 3,
+    "name": "Vendor 3",
+    "contact_details": "Vendor 3 Contact Details",
+    "address": "Vendor 3 Address",
+    "vendor_code": "06bc3411-6930-45c9-8f88-c9f5bccc909e",
+    "on_time_delivery_rate": 100.0,
+    "quality_rating_avg": 5.0,
+    "average_response_time": 1060.28,
+    "fulfillment_rate": 100.0
+  },
+  {
+    "id": 4,
+    "name": "Vendor 4",
+    "contact_details": "Vendor 4 Contact Details",
+    "address": "Vendor 4 Address",
+    "vendor_code": "0d7de877-bddd-4161-a764-6ed530c6a605",
+    "on_time_delivery_rate": null,
+    "quality_rating_avg": null,
+    "average_response_time": 331.87,
+    "fulfillment_rate": null
+  },
+  {
+    "id": 5,
+    "name": "Vendor 5",
+    "contact_details": "Vendor 5 Contact Details",
+    "address": "Vendor 5 Address",
+    "vendor_code": "d26b48c6-42f1-42f9-a6c5-957af13812d1",
+    "on_time_delivery_rate": null,
+    "quality_rating_avg": null,
+    "average_response_time": null,
+    "fulfillment_rate": null
+  },
+  {
+    "id": 10,
+    "name": "New Vendor",
+    "contact_details": "New Vendor Contact",
+    "address": "New Vendor Address",
+    "vendor_code": "eff8907f-77c0-40f6-aa68-5d3ac60156d7",
+    "on_time_delivery_rate": null,
+    "quality_rating_avg": null,
+    "average_response_time": null,
+    "fulfillment_rate": null
+  },
+  {
+    "id": 11,
+    "name": "New Vendor",
+    "contact_details": "New Vendor Contact",
+    "address": "New Vendor Address",
+    "vendor_code": "4b47064e-793b-4a46-98ab-078735e53494",
+    "on_time_delivery_rate": null,
+    "quality_rating_avg": null,
+    "average_response_time": null,
+    "fulfillment_rate": null
+  },
+  {
+    "id": 12,
+    "name": "New Vendor",
+    "contact_details": "New Vendor Contact",
+    "address": "New Vendor Address",
+    "vendor_code": "52a30f6f-c9d2-4e09-a5cb-669ecd19b295",
+    "on_time_delivery_rate": null,
+    "quality_rating_avg": null,
+    "average_response_time": null,
+    "fulfillment_rate": null
+  },
+  {
+    "id": 13,
+    "name": "New Vendor",
+    "contact_details": "New Vendor Contact",
+    "address": "New Vendor Address",
+    "vendor_code": "4120dedf-d8cb-4b94-98a6-499db2b0025e",
+    "on_time_delivery_rate": null,
+    "quality_rating_avg": null,
+    "average_response_time": null,
+    "fulfillment_rate": null
+  }
+]
+- 
+- 
+- 
+- GET http://127.0.0.1:8000/api/vendors/1
+- 
+- Response Code: 200
+- {
+  "id": 1,
+  "name": "Vendor 1",
+  "contact_details": "Vendor 1 Contact Details",
+  "address": "Vendor 1 Address",
+  "vendor_code": "99c7a5da-8f9e-4fdb-8233-67d71b6f8a05",
+  "on_time_delivery_rate": 33.33,
+  "quality_rating_avg": 4.33,
+  "average_response_time": 297.97,
+  "fulfillment_rate": 60.0
+}
+- 
+- 
+- 
+- POST http://127.0.0.1:8000/api/vendors/
+- 
+- Response Code: 201
+- {
+  "id": 17,
+  "name": "New Vendor",
+  "contact_details": "New Vendor Contact",
+  "address": "New Vendor Address",
+  "vendor_code": "ef9797eb-f70a-44a9-bb5d-07c29c006eba",
+  "on_time_delivery_rate": null,
+  "quality_rating_avg": null,
+  "average_response_time": null,
+  "fulfillment_rate": null
+}
+- 
+- 
+- 
+- PUT http://127.0.0.1:8000/api/vendors/17/
+- 
+- Response Code: 200
+- {
+  "id": 17,
+  "name": "New Vendor",
+  "contact_details": "New Vendor Contact",
+  "address": "Updated Address",
+  "vendor_code": "ef9797eb-f70a-44a9-bb5d-07c29c006eba",
+  "on_time_delivery_rate": null,
+  "quality_rating_avg": null,
+  "average_response_time": null,
+  "fulfillment_rate": null
+}
+- 
+- 
+- 
+- DELETE http://127.0.0.1:8000/api/vendors/17/
+- 
+- Response Code: 204
+- NO CONTENT
+- 
+- 
+- 
+- GET http://127.0.0.1:8000/api/purchase_orders/
+- 
+- Response Code: 200
+- [
+  {
+    "id": 1,
+    "po_number": "9e8f9b4e-3605-4d8e-9193-0d8591e79f34",
+    "order_date": "2023-12-02T20:33:33.776784Z",
+    "delivery_date": "2023-12-03T13:21:36Z",
+    "items": {
+      "item1": "1",
+      "item2": "5",
+      "item3": "4"
+    },
+    "quantity": 10,
+    "status": "completed",
+    "quality_rating": 5.0,
+    "issue_date": "2023-12-02T20:33:33.776784Z",
+    "acknowledgment_date": "2023-12-03T14:13:51Z",
+    "vendor": 3
+  },
+  {
+    "id": 2,
+    "po_number": "bab28e19-0843-4e96-9767-505c6c56313d",
+    "order_date": "2023-12-03T13:24:27.325158Z",
+    "delivery_date": "2023-12-15T18:50:46Z",
+    "items": {
+      "item1": 5
+    },
+    "quantity": 5,
+    "status": "completed",
+    "quality_rating": 4.0,
+    "issue_date": "2023-12-03T13:24:27.325158Z",
+    "acknowledgment_date": "2023-12-03T14:13:56Z",
+    "vendor": 1
+  },
+  {
+    "id": 4,
+    "po_number": "e0ccbefb-8fc6-4ee3-922b-a747de34fde8",
+    "order_date": "2023-12-03T13:34:04.290097Z",
+    "delivery_date": "2023-12-03T13:33:47Z",
+    "items": {
+      "item1": 5
+    },
+    "quantity": 5,
+    "status": "completed",
+    "quality_rating": 4.0,
+    "issue_date": "2023-12-03T13:34:04.290097Z",
+    "acknowledgment_date": "2023-12-03T14:14:02Z",
+    "vendor": 2
+  },
+  {
+    "id": 5,
+    "po_number": "ff79e3f5-8f97-4ab0-89fd-f1baf1f22767",
+    "order_date": "2023-12-03T14:19:58.262173Z",
+    "delivery_date": "2023-12-06T19:48:50Z",
+    "items": {
+      "item1": 1
+    },
+    "quantity": 1,
+    "status": "cancelled",
+    "quality_rating": null,
+    "issue_date": "2023-12-03T14:19:58.262173Z",
+    "acknowledgment_date": "2023-12-03T14:19:57Z",
+    "vendor": 1
+  },
+  {
+    "id": 6,
+    "po_number": "ed002cb1-148a-4b4f-83b1-ac9651fdeac9",
+    "order_date": "2023-12-03T14:21:58.916270Z",
+    "delivery_date": "2023-12-03T14:22:17Z",
+    "items": {
+      "item1": 5
+    },
+    "quantity": 5,
+    "status": "completed",
+    "quality_rating": 4.0,
+    "issue_date": "2023-12-03T14:21:58.916270Z",
+    "acknowledgment_date": "2023-12-03T14:22:26Z",
+    "vendor": 1
+  },
+  {
+    "id": 7,
+    "po_number": "9831656c-2c0a-4ca1-a83f-996b01b3b946",
+    "order_date": "2023-12-04T06:02:14.455570Z",
+    "delivery_date": "2023-12-07T11:28:30.917723Z",
+    "items": {
+      "item1": 3
+    },
+    "quantity": 3,
+    "status": "pending",
+    "quality_rating": null,
+    "issue_date": "2023-12-04T06:02:14.476199Z",
+    "acknowledgment_date": "2023-12-04T12:36:35.187977Z",
+    "vendor": 2
+  },
+  {
+    "id": 8,
+    "po_number": "aaf82f01-6db9-47b7-bc81-2799c756396b",
+    "order_date": "2023-12-04T06:30:55.162628Z",
+    "delivery_date": "2023-12-11T11:59:29Z",
+    "items": {
+      "item1": 5
+    },
+    "quantity": 5,
+    "status": "completed",
+    "quality_rating": 5.0,
+    "issue_date": "2023-12-04T06:30:55.164140Z",
+    "acknowledgment_date": "2023-12-05T06:30:54Z",
+    "vendor": 1
+  },
+  {
+    "id": 9,
+    "po_number": "86eac3f5-9970-45af-ad11-ed7a9d137fc0",
+    "order_date": "2023-12-04T06:31:52.043845Z",
+    "delivery_date": "2023-12-07T11:59:29Z",
+    "items": {
+      "item1": 1
+    },
+    "quantity": 1,
+    "status": "cancelled",
+    "quality_rating": null,
+    "issue_date": "2023-12-04T06:31:52.043845Z",
+    "acknowledgment_date": "2023-12-04T06:31:51Z",
+    "vendor": 1
+  },
+  {
+    "id": 11,
+    "po_number": "c62876be-93eb-4255-a2cb-ad1ebabcefdb",
+    "order_date": "2023-12-04T11:43:00.445873Z",
+    "delivery_date": "2023-12-07T16:04:50.434547Z",
+    "items": {
+      "item1": "5",
+      "item2": "5",
+      "item3": "5"
+    },
+    "quantity": 15,
+    "status": "pending",
+    "quality_rating": null,
+    "issue_date": "2023-12-04T11:43:00.445873Z",
+    "acknowledgment_date": "2023-12-04T17:14:52.650624Z",
+    "vendor": 4
+  }
+]
+- 
+- 
+- 
+- GET http://127.0.0.1:8000/api/purchase_orders/1/
+- 
+- Response Code: 200
+- {
+  "id": 1,
+  "po_number": "9e8f9b4e-3605-4d8e-9193-0d8591e79f34",
+  "order_date": "2023-12-02T20:33:33.776784Z",
+  "delivery_date": "2023-12-03T13:21:36Z",
+  "items": {
+    "item1": "1",
+    "item2": "5",
+    "item3": "4"
+  },
+  "quantity": 10,
+  "status": "completed",
+  "quality_rating": 5.0,
+  "issue_date": "2023-12-02T20:33:33.776784Z",
+  "acknowledgment_date": "2023-12-03T14:13:51Z",
+  "vendor": 3
+}
+- 
+- 
+- 
+- GET http://127.0.0.1:8000/api/purchase_orders/?vendor=1
+- 
+- Response Code: 200
+- [
+  {
+    "id": 2,
+    "po_number": "bab28e19-0843-4e96-9767-505c6c56313d",
+    "order_date": "2023-12-03T13:24:27.325158Z",
+    "delivery_date": "2023-12-15T18:50:46Z",
+    "items": {
+      "item1": 5
+    },
+    "quantity": 5,
+    "status": "completed",
+    "quality_rating": 4.0,
+    "issue_date": "2023-12-03T13:24:27.325158Z",
+    "acknowledgment_date": "2023-12-03T14:13:56Z",
+    "vendor": 1
+  },
+  {
+    "id": 5,
+    "po_number": "ff79e3f5-8f97-4ab0-89fd-f1baf1f22767",
+    "order_date": "2023-12-03T14:19:58.262173Z",
+    "delivery_date": "2023-12-06T19:48:50Z",
+    "items": {
+      "item1": 1
+    },
+    "quantity": 1,
+    "status": "cancelled",
+    "quality_rating": null,
+    "issue_date": "2023-12-03T14:19:58.262173Z",
+    "acknowledgment_date": "2023-12-03T14:19:57Z",
+    "vendor": 1
+  },
+  {
+    "id": 6,
+    "po_number": "ed002cb1-148a-4b4f-83b1-ac9651fdeac9",
+    "order_date": "2023-12-03T14:21:58.916270Z",
+    "delivery_date": "2023-12-03T14:22:17Z",
+    "items": {
+      "item1": 5
+    },
+    "quantity": 5,
+    "status": "completed",
+    "quality_rating": 4.0,
+    "issue_date": "2023-12-03T14:21:58.916270Z",
+    "acknowledgment_date": "2023-12-03T14:22:26Z",
+    "vendor": 1
+  },
+  {
+    "id": 8,
+    "po_number": "aaf82f01-6db9-47b7-bc81-2799c756396b",
+    "order_date": "2023-12-04T06:30:55.162628Z",
+    "delivery_date": "2023-12-11T11:59:29Z",
+    "items": {
+      "item1": 5
+    },
+    "quantity": 5,
+    "status": "completed",
+    "quality_rating": 5.0,
+    "issue_date": "2023-12-04T06:30:55.164140Z",
+    "acknowledgment_date": "2023-12-05T06:30:54Z",
+    "vendor": 1
+  },
+  {
+    "id": 9,
+    "po_number": "86eac3f5-9970-45af-ad11-ed7a9d137fc0",
+    "order_date": "2023-12-04T06:31:52.043845Z",
+    "delivery_date": "2023-12-07T11:59:29Z",
+    "items": {
+      "item1": 1
+    },
+    "quantity": 1,
+    "status": "cancelled",
+    "quality_rating": null,
+    "issue_date": "2023-12-04T06:31:52.043845Z",
+    "acknowledgment_date": "2023-12-04T06:31:51Z",
+    "vendor": 1
+  }
+]
+- 
+- 
+- 
+- POST http://127.0.0.1:8000/api/purchase_orders/
+- 
+- Response Code: 201
+- {
+  "id": 13,
+  "po_number": "4a3e563d-cb2f-4d5e-b7ac-b554741d60ce",
+  "order_date": "2023-12-04T13:47:12.185444Z",
+  "delivery_date": "2023-12-07T17:58:37.477602Z",
+  "items": {
+    "item1": 5
+  },
+  "quantity": 5,
+  "status": "pending",
+  "quality_rating": null,
+  "issue_date": "2023-12-04T13:47:12.185444Z",
+  "acknowledgment_date": null,
+  "vendor": 5
+}
+- 
+- 
+- 
+- PUT http://127.0.0.1:8000/api/purchase_orders/13/
+- 
+- Response Code: 200
+- {
+  "id": 13,
+  "po_number": "4a3e563d-cb2f-4d5e-b7ac-b554741d60ce",
+  "order_date": "2023-12-04T13:47:12.185444Z",
+  "delivery_date": "2023-12-07T17:58:37.477602Z",
+  "items": {
+    "item1": 5
+  },
+  "quantity": 5,
+  "status": "completed",
+  "quality_rating": 4.0,
+  "issue_date": "2023-12-04T13:47:12.185444Z",
+  "acknowledgment_date": null,
+  "vendor": 5
+}
+- 
+- 
+- 
+- POST http://127.0.0.1:8000/api/purchase_orders/13/acknowledge/
+- 
+- Response Code: 201
+- {
+  "id": 13,
+  "po_number": "4a3e563d-cb2f-4d5e-b7ac-b554741d60ce",
+  "order_date": "2023-12-04T13:47:12.185444Z",
+  "delivery_date": "2023-12-07T17:58:37.477602Z",
+  "items": {
+    "item1": 5
+  },
+  "quantity": 5,
+  "status": "completed",
+  "quality_rating": 4.0,
+  "issue_date": "2023-12-04T13:47:12.185444Z",
+  "acknowledgment_date": "2023-12-04T19:17:12.347534Z",
+  "vendor": 5
+}
+- 
+- 
+- 
+- DELETE http://127.0.0.1:8000/api/purchase_orders/13/
+- 
+- Response Code: 204
+- NO CONTENT
+- 
+- 
+- 
+- GET http://127.0.0.1:8000/api/vendors/1/performance
+- 
+- Response Code: 200
+- [
+  {
+    "id": 1,
+    "date": "2023-12-04T06:29:53.355677Z",
+    "on_time_delivery_rate": 50.0,
+    "quality_rating_avg": 4.0,
+    "average_response_time": 16.633333333333333,
+    "fulfillment_rate": 66.66666666666666,
+    "vendor": 1
+  },
+  {
+    "id": 2,
+    "date": "2023-12-04T06:34:04.155326Z",
+    "on_time_delivery_rate": 33.33333333333333,
+    "quality_rating_avg": 4.333333333333333,
+    "average_response_time": 297.96666666666664,
+    "fulfillment_rate": 60.0,
+    "vendor": 1
+  }
+]

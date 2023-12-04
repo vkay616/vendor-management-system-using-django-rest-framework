@@ -37,7 +37,7 @@ python manage.py runserver
 6. Now you can use cURL commands, any programming language or a tool like Postman to send various requests to the API and get appropriate responses. 
 
 
-**I recommend using Postman since I've exported a collection of all API requests and provided it in the repository, using that you can easily test all the requests.** 
+**I recommend using Postman since I've exported a collection of all API requests and provided it in the repository, using that you can easily test all the requests. Or you can check out the test_api folder and run the api_test.py file to test each request and their response which are stored in the test.log in the log folder.** 
 
 
 
