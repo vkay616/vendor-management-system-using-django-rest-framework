@@ -171,7 +171,8 @@ class HistoricalPerformance(models.Model):
         editable=False,
         help_text="fulfillment rate of the vendor on the recorded date"
     )
-    
+
+    # automatically saves all the performance metrics at the time the performance was recorded    
     def save(self):
         self.on_time_delivery_rate = self.vendor.on_time_delivery_rate
         self.quality_rating_avg = self.vendor.quality_rating_avg

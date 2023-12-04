@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
 
-
+# function to evaluate average quality rating
 def evaluate_avg_rating():
     vendors = Vendor.objects.all()
     for vendor in vendors:
@@ -34,7 +34,7 @@ def evaluate_avg_rating():
 
         vendor.save(update_fields=["quality_rating_avg"])
 
-
+# function to evaluate on time delivery rate
 def evaluate_on_time_delivery_rate():
     vendors = Vendor.objects.all()
 
@@ -68,7 +68,7 @@ def evaluate_on_time_delivery_rate():
 
         vendor.save(update_fields=["on_time_delivery_rate"])
 
-
+# function to evaluate response time of the vendor
 def evaluate_response_time():
     vendors = Vendor.objects.all()
 
@@ -98,7 +98,7 @@ def evaluate_response_time():
 
         vendor.save(update_fields=["average_response_time"])
 
-
+# function to evaluate fulfillment rate of the vendor
 def evaluate_fulfillment_rate():
     vendors = Vendor.objects.all()
 
@@ -126,19 +126,19 @@ def evaluate_fulfillment_rate():
 
         vendor.save(update_fields=["fulfillment_rate"])
 
-
+# function that evaluates all the performance metrics of the vendor using the above functions
 def evaluate_performance():
     evaluate_avg_rating()
     evaluate_on_time_delivery_rate()
     evaluate_response_time()
     evaluate_fulfillment_rate()
 
-
+# API view for Vendor
 class VendorView(APIView):
-
+    # added authorization
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
-
+    # function for dealing with GET requests
     def get(self, request, pk=None):
         evaluate_performance()
         if pk:
@@ -155,7 +155,7 @@ class VendorView(APIView):
                 return Response(serializer.data)
             except Exception as e:
                 return Response({"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
-
+    # function for dealing with POST requests
     def post(self, request):
         serializer = VendorSerializer(data=request.data)
         if serializer.is_valid():
@@ -166,7 +166,7 @@ class VendorView(APIView):
             {"error": "there are some errors in the json body"},
             status=status.HTTP_400_BAD_REQUEST
         )
-
+    # function for dealing with PUT requests
     def put(self, request, pk=None):
         if pk:
             try:
@@ -181,7 +181,7 @@ class VendorView(APIView):
                 return Response({"error": f"vendor with id {pk} not found!"}, status=status.HTTP_404_NOT_FOUND)
         else:
             return Response({"error": f"enter a valid id"}, status=status.HTTP_404_NOT_FOUND)
-
+    # function for dealing with DELETE requests
     def delete(self, request, pk=None):
         if pk:
             vendor = Vendor.objects.get(pk=pk)
@@ -190,12 +190,12 @@ class VendorView(APIView):
         else:
             return Response({"error": "enter a valid vendor id"}, status=status.HTTP_400_BAD_REQUEST)
 
-
+# API view for Purchase Orders
 class PurchaseOrderView(APIView):
-
+    # for authorization
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
-
+    # function for dealing with GET requests
     def get(self, request, pk=None):
         if pk:
             try:
@@ -221,7 +221,7 @@ class PurchaseOrderView(APIView):
                 return Response(serializer.data)
             except Exception as e:
                 return Response({"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
-
+    # function for dealing with POST requests
     def post(self, request):
         serializer = POSerializer(data=request.data)
         if serializer.is_valid():
@@ -233,7 +233,7 @@ class PurchaseOrderView(APIView):
             {"error": "there are some errors in the json body"},
             status=status.HTTP_400_BAD_REQUEST
         )
-
+    # function for dealing with PUT requests
     def put(self, request, pk=None):
         if pk:
             try:
@@ -249,7 +249,7 @@ class PurchaseOrderView(APIView):
                 return Response({"error": f"order with id {pk} not found!"}, status=status.HTTP_404_NOT_FOUND)
         else:
             return Response({"error": f"enter a valid id"}, status=status.HTTP_404_NOT_FOUND)
-
+    # function for dealing with DELETE requests
     def delete(self, request, pk=None):
         if pk:
             order = PurchaseOrder.objects.get(pk=pk)
@@ -259,11 +259,12 @@ class PurchaseOrderView(APIView):
         else:
             return Response({"error": "enter a valid order id"}, status=status.HTTP_400_BAD_REQUEST)
 
+# API view for Historical Performance of Vendors
 class HistoricalPerformanceView(APIView):
-
+    # for authorization
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
-
+    # function for GET requests
     def get(self, request, pk=None):
         if pk:
             try:
@@ -277,12 +278,12 @@ class HistoricalPerformanceView(APIView):
             except Exception:
                 return Response({"error": "enter a valid vendor id"}, status=status.HTTP_404_NOT_FOUND)
             
-
+# API view for Acknowledging Purchase Orders
 class AcknowledgmentView(APIView):
-
+    # for authorization
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
-
+    # function to deal with the POST request
     def post(self, request, pk=None):
         if pk:
             try:
@@ -299,7 +300,7 @@ class AcknowledgmentView(APIView):
         else:
             return Response({"error": "enter a valid id"}, status=status.HTTP_400_BAD_REQUEST)
 
-
+# API view for  getting the Authorization Token
 class GetToken(APIView):
     def get(self, request):
         try:
