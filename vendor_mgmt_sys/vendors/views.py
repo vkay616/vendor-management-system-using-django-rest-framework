@@ -4,6 +4,10 @@ from rest_framework.response import Response
 from .serializers import VendorSerializer, POSerializer, HPSerializer
 from datetime import timedelta, datetime
 from rest_framework import status
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
+from django.contrib.auth import get_user_model
 
 
 def evaluate_avg_rating():
@@ -132,6 +136,9 @@ def evaluate_performance():
 
 class VendorView(APIView):
 
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, pk=None):
         evaluate_performance()
         if pk:
@@ -185,6 +192,9 @@ class VendorView(APIView):
 
 
 class PurchaseOrderView(APIView):
+
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, pk=None):
         if pk:
@@ -250,6 +260,10 @@ class PurchaseOrderView(APIView):
             return Response({"error": "enter a valid order id"}, status=status.HTTP_400_BAD_REQUEST)
 
 class HistoricalPerformanceView(APIView):
+
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, pk=None):
         if pk:
             try:
@@ -265,10 +279,16 @@ class HistoricalPerformanceView(APIView):
             
 
 class AcknowledgmentView(APIView):
+
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def post(self, request, pk=None):
         if pk:
             try:
                 order = PurchaseOrder.objects.get(pk=pk)
+                if order.acknowledgment_date:
+                    return Response({"error": "this order has already been acknowledged"}, status=status.HTTP_400_BAD_REQUEST)
                 serializer = POSerializer(order, data={"acknowledgment_date": datetime.now()}, partial=True)
                 if serializer.is_valid():
                     serializer.save()
@@ -278,4 +298,16 @@ class AcknowledgmentView(APIView):
                 return Response({"error": "order id doesn't exist"}, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({"error": "enter a valid id"}, status=status.HTTP_400_BAD_REQUEST)
-            
+
+
+class GetToken(APIView):
+    def get(self, request):
+        try:
+            User = get_user_model()
+            u = User.objects.get(username="admin")
+            token, created = Token.objects.get_or_create(user=u)
+
+            return Response({"token": str(token)}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+

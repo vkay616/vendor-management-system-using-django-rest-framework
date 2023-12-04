@@ -9,4 +9,5 @@ urlpatterns = [
     path("purchase_orders/<int:pk>/", views.PurchaseOrderView.as_view(), name="order-by-id"),
     path("vendors/<int:pk>/performance/", views.HistoricalPerformanceView.as_view(), name="historical-performance"),
     path("purchase_orders/<int:pk>/acknowledge/", views.AcknowledgmentView.as_view(), name="acknowledge"),
+    path("token/", views.GetToken.as_view(), name="token"),
 ]
